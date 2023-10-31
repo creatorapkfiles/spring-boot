@@ -4,10 +4,12 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-public class UserService {
+@Transactional
+public class UserService implements UserServiceInterface{
     private final UserRepository userRepository;
 
     @Autowired
@@ -18,6 +20,7 @@ public class UserService {
     public User findById(Long id) {
         return userRepository.getOne(id);
     }
+
     public List<User> findAll() {
         return userRepository.findAll();
     }
